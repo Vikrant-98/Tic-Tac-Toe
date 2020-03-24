@@ -39,7 +39,7 @@ then
 	echo "It's Computer turn"
 fi
 count=0
-while [[ $count -ne 9 ]]
+while [ $count -ne 9 ]
 do
 ((count++))
 	echo ""
@@ -57,7 +57,7 @@ do
 		index=$(($((RANDOM%8))+1))
 	elif [[ $toss -eq 0 ]]
 	then
-		read -p "Enter the position where you want to insert $player" index
+		read -p "Enter the position where you want to insert $player  : " index
 	fi
 	if [ ${ar[index-1]} == '-' ]
 	then
@@ -79,16 +79,6 @@ do
                 	((toss--))
         	fi
 	fi
-	echo ""
-        echo "|   ${ar[0]}       ${ar[1]}       ${ar[2]}   |"
-        echo "|                 	|"
-        echo "|                 	|"
-        echo "|   ${ar[3]}       ${ar[4]}       ${ar[5]}   |"
-        echo "|                 	|"
-        echo "|                 	|"
-        echo "|   ${ar[6]}       ${ar[7]}       ${ar[8]}   |"
-        echo ""
-
 	if [ $toss -eq 0 ]
 	then
 		player=$computer
