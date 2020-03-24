@@ -52,7 +52,13 @@ do
 	echo "|   ${ar[6]}       ${ar[7]}       ${ar[8]}   |"
 	echo ""
 
-	read -p "Enter the position where you want to insert $player" index
+	if [[ $toss -eq 1  ]]
+	then
+		index=$(($((RANDOM%8))+1))
+	elif [[ $toss -eq 0 ]]
+	then
+		read -p "Enter the position where you want to insert $player" index
+	fi
 	if [ ${ar[index-1]} == '-' ]
 	then
 		ar[index-1]=$player
