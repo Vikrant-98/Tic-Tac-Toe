@@ -21,8 +21,19 @@ echo ""
 temp=$((RANDOM%2)) 
 if [[ $temp -eq 0 ]]
 then
-	assign='O'
+	player_1='O'
+	player_2='X'
 elif [[ $temp -eq 1 ]]
 then
-	assign='X'
+	Player_1='X'
+	player_2='O'
 fi
+toss=$((RANDOM%2))
+if [[ $toss -eq 0 ]]
+then
+        player=$player_1
+elif [[ $toss -eq 1 ]]
+then
+        player=$player_2
+fi
+
