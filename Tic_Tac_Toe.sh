@@ -1,5 +1,43 @@
 #!/bin/bash -x
 
+function Row()
+{
+
+index1=0
+count_1=0
+while [ $count_1 -le 2 ]
+do
+	((count_1++))
+	if [[ ${ar[index1]} == $player && ${ar[index1+1]} == $player && ${counter[0]} == 1 ]]
+	then
+		if [[ ${ar[record+1]} == '-' ]]
+		then
+			index=$(($record+1))
+		else
+			index=$(($record+2))
+		fi
+		counter[0]=1
+		count_1=3
+	elif [[ ${ar[index1+1]} == $player && ${ar[index1+2]} == $player && ${counter[1]} == 1 ]]
+	then
+		if [[ ${ar[record-1]} == '-' ]]
+		then
+			index=$(($record-1))
+		else
+			index=$(($record-2))
+		fi
+		counter[1]=1
+		count_1=3
+	elif [[ ${ar[index1]} == $player && ${ar[index1+2]} == $player && ${counter[2]} == 1 ]]
+	then
+		index=$(($(($index1+$index1+2))/2))
+		counter[2]=1
+		count_1=3
+	fi
+index1=$(($index1+3))
+done
+
+}
 function Win_Check()
 {
 
@@ -47,7 +85,14 @@ ar[5]='-'
 ar[6]='-'
 ar[7]='-'
 ar[8]='-'
+counter[0]=0
+counter[1]=0
+counter[2]=0
+counter[3]=0
+counter[4]=0
+counter[5]=0
 invalid=0
+record=0
 echo ""
 echo "|   ${ar[0]}       ${ar[1]}       ${ar[2]}   |"
 echo "|			|"
@@ -87,6 +132,7 @@ do
 		if [[ $val -ne 4 && $val -lt 9 ]]
 		then
 			index=$val
+			Row$()
 		elif [[ $invalid -eq 1 ]]
 		then			
 			((index++))
@@ -98,6 +144,7 @@ do
 		fi
 	else
 	read -p "Enter the position where you want to insert $player" index
+		record=$index
 	fi
 	if [[ ${ar[index]} == '-' ]]
 	then
