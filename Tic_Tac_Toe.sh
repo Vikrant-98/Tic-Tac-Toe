@@ -38,6 +38,46 @@ index1=$(($index1+3))
 done
 
 }
+
+function Column()
+{
+
+index1=0
+count_1=0
+while [ $count_1 -le 2 ]
+do
+	((count_1++))
+	if [[ ${ar[index1]} == $player && ${ar[index1+3]} == $player && ${counter[3]} == 1 ]]
+	then
+		if [[ ${ar[record+3]} == '-' ]]
+		then
+			index=$(($record+3))
+		else
+			index=$(($record+6))
+		fi
+		counter[0]=1
+		count_1=3
+	elif [[ ${ar[index1+3]} == $player && ${ar[index1+6]} == $player && ${counter[4]} == 1 ]]
+	then
+		if [[ ${ar[record-3]} == '-' ]]
+		then
+			index=$(($record-3))
+		else
+			index=$(($record-6))
+		fi
+		counter[1]=1
+		count_1=3
+	elif [[ ${ar[index1]} == $player && ${ar[index1+6]} == $player && ${counter[5]} == 1 ]]
+	then
+			index=$(($(($index1+$index1+6))/2))
+		counter[2]=1
+		count_1=3
+	fi
+index1=$(($index1+1))
+done
+
+}
+
 function Win_Check()
 {
 
@@ -133,6 +173,7 @@ do
 		then
 			index=$val
 			Row$()
+			Column$()
 		elif [[ $invalid -eq 1 ]]
 		then			
 			((index++))
@@ -185,5 +226,5 @@ do
 		player=$player_1
 		((toss--))
 	fi
-		Win_Check$()
+		
 done
