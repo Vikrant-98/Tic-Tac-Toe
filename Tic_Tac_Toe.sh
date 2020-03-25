@@ -175,7 +175,7 @@ do
 			Row$()
 			Column$()
 		elif [[ $invalid -eq 1 ]]
-		then			
+		then
 			((index++))
 			if [[ $index -gt 8 ]]
 			then
@@ -226,5 +226,5 @@ do
 		player=$player_1
 		((toss--))
 	fi
-		
+		Win_Check$()
 done
